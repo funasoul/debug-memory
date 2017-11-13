@@ -50,4 +50,4 @@ int main(int argc, char const* argv[])
 ```
 
 ## Todo
-- [] Implement a wrapper for `strdup()` (will be done quite soon).
+- [ ] Implement a wrapper for `strdup()` (will be done quite soon).
