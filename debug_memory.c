@@ -49,7 +49,7 @@ void print_node(debug_node_t* node) {
   printf("----------------------------------------\n");
 }
 
-void print_list() {
+void print_list(void) {
   debug_node_t *current = debug_root_node;
   if (current == NULL) return;
   printf("=== Allocated Memory ===================\n");
