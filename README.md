@@ -5,7 +5,7 @@ it's not so easy. I decided to write this code so that I can easily embed the me
 check in my C code.
 
 ## Introduction
-Thanks for the document by
+Thanks to the document by
 [Oracle](https://docs.oracle.com/javase/jp/8/docs/technotes/guides/troubleshoot/memleaks005.html#CIHDEEHJ),
 I started to write this code from the above URL. Starting my implementation from the code by Oracle, I've
 added `debug_calloc()`, `debug_realloc()` and several functions to print out leaked memory.
@@ -51,3 +51,4 @@ int main(int argc, char const* argv[])
 
 ## Todo
 - [ ] Implement a wrapper for `strdup()` (will be done quite soon).
+- [ ] Change the name of the function `print_list()` to avoid name conflict.
