@@ -17,6 +17,34 @@ added `debug_calloc()`, `debug_realloc()` and several functions to print out lea
 % cd debug-memory
 % make
 % ./memtest
+=== Allocated Memory ===================
+address : 0x7f8b97402780
+size    : 100 bytes
+file    : test.c
+line    : 10
+----------------------------------------
+address : 0x7f8b97402810
+size    : 50 bytes
+file    : test.c
+line    : 11
+----------------------------------------
+address : 0x7f8b97402880
+size    : 40 bytes
+file    : test.c
+line    : 12
+----------------------------------------
+Total   : 190 bytes
+========================================
+
+Checking for memory leak
+=== Allocated Memory ===================
+address : 0x7f8b97402810
+size    : 50 bytes
+file    : test.c
+line    : 11
+----------------------------------------
+Total   : 50 bytes
+========================================
 ```
 
 ## How to integrate with your code
