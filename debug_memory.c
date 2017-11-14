@@ -3,6 +3,9 @@
 #include "debug_memory.h"
 
 debug_node_t* create_node(Site* site) {
+#ifdef DEBUG_MEMORY_DEBUG
+  printf("create_node for %s %4d [%p]\n", site->s.file, site->s.line, site);
+#endif
   debug_node_t* head = malloc(sizeof(debug_node_t));
   head->site = site;
   head->next = NULL;
@@ -10,6 +13,9 @@ debug_node_t* create_node(Site* site) {
 }
 
 void add_node(Site* site) {
+#ifdef DEBUG_MEMORY_DEBUG
+  printf("   add_node for %s %4d [%p]\n", site->s.file, site->s.line, site);
+#endif
   debug_node_t* current;
   if (debug_root_node == NULL) {
     debug_root_node = create_node(site);
@@ -23,6 +29,9 @@ void add_node(Site* site) {
 }
 
 void remove_node(Site* site) {
+#ifdef DEBUG_MEMORY_DEBUG
+  printf("remove_node for %s %4d [%p]\n", site->s.file, site->s.line, site);
+#endif
   debug_node_t* tmp_node;
   debug_node_t* current;
   if (debug_root_node->site == site) {
@@ -37,7 +46,9 @@ void remove_node(Site* site) {
       tmp_node = current->next;
       current->next = tmp_node->next;
       free(tmp_node);
+      return;
     }
+    current = current->next;
   }
 }
 
@@ -105,4 +116,25 @@ void debug_free(void *p, char *file, int line) {
   ((Site*)rp)->s.line = line;
   remove_node((Site*)rp);
   free(rp);
+}
+
+char* debug_strdup(const char* str, char *file, int line) {
+  char *rp = NULL;
+  if (str) {
+    size_t n = strlen(str) + 1;
+    rp = malloc(sizeof(Site)+n);
+    if (rp) {
+#ifdef _MSC_VER
+      strcpy_s(rp + sizeof(Site), n, str);
+#else
+      strcpy(rp + sizeof(Site), str);
+#endif
+      total_allocated += n;
+      ((Site*)rp)->s.n = n;
+      ((Site*)rp)->s.file = file;
+      ((Site*)rp)->s.line = line;
+      add_node((Site*)rp);
+    }
+  }
+  return rp + sizeof(Site);
 }
