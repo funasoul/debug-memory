@@ -49,7 +49,7 @@ Total   : 50 bytes
 
 ## How to integrate with your code
 Super easy. Just include `debug_memory.h`, and then call
-`print_list()` anywhere in your C code. Here is an example (just as same as
+`print_allocated_memory()` anywhere in your C code. Here is an example (just as same as
 `test.c` in the repository).
 
 ```cpp
@@ -63,7 +63,7 @@ int main(int argc, char const* argv[])
   char* r = (char*)calloc(sizeof(int), 10);
 
   /* Print allocated memory */
-  print_list();
+  print_allocated_memory();
 
   free(p);
   q = NULL; /* memory leak! */
@@ -71,7 +71,7 @@ int main(int argc, char const* argv[])
 
   /* Print allocated memory again */
   printf("\nChecking for memory leak\n");
-  print_list();
+  print_allocated_memory();
 
   return 0;
 }
@@ -79,4 +79,4 @@ int main(int argc, char const* argv[])
 
 ## Todo
 - [ ] Implement a wrapper for `strdup()` (will be done quite soon).
-- [ ] Change the name of the function `print_list()` to avoid name conflict.
+- [x] Change the name of the function `print_list()` to avoid name conflict.

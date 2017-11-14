@@ -19,14 +19,13 @@ void* debug_malloc(size_t, char*, int);
 void* debug_calloc(size_t, size_t, char*, int);
 void* debug_realloc(void*, size_t, char*, int);
 void debug_free(void*, char*, int);
-void print_list(void);
 
 /* util */
 debug_node_t* create_node(Site*);
 void add_node(Site*);
 void remove_node(Site*);
-void print_node(debug_node_t*);
-void print_list(void);
+void print_debug_node(debug_node_t*);
+void print_allocated_memory(void);
 
 #ifndef C_DEBUG_MEMORY_C
 #define malloc(n) debug_malloc(n, __FILE__, __LINE__)

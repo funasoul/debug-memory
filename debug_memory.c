@@ -41,7 +41,7 @@ void remove_node(Site* site) {
   }
 }
 
-void print_node(debug_node_t* node) {
+void print_debug_node(debug_node_t* node) {
   printf("address : %p\n", node->site);
   printf("size    : %zu bytes\n", node->site->s.n);
   printf("file    : %s\n", node->site->s.file);
@@ -49,12 +49,12 @@ void print_node(debug_node_t* node) {
   printf("----------------------------------------\n");
 }
 
-void print_list(void) {
+void print_allocated_memory(void) {
   debug_node_t *current = debug_root_node;
   if (current == NULL) return;
   printf("=== Allocated Memory ===================\n");
   while (current != NULL) {
-    print_node(current);
+    print_debug_node(current);
     current = current->next;
   }
   printf("Total   : %d bytes\n", total_allocated);

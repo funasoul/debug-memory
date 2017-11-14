@@ -1,6 +1,6 @@
 /*
  * Author: Akira Funahashi <funa@bio.keio.ac.jp>
- * Last modified: Tue, 14 Nov 2017 06:26:27 +0900
+ * Last modified: Tue, 14 Nov 2017 18:37:44 +0900
  */
 #include <stdio.h>
 #include "debug_memory.h"
@@ -12,7 +12,7 @@ int main(int argc, char const* argv[])
   char* r = (char*)calloc(sizeof(int), 10);
 
   /* Print allocated memory */
-  print_list();
+  print_allocated_memory();
 
   free(p);
   q = NULL; /* memory leak! */
@@ -20,7 +20,7 @@ int main(int argc, char const* argv[])
 
   /* Print allocated memory again */
   printf("\nChecking for memory leak\n");
-  print_list();
+  print_allocated_memory();
 
   return 0;
 }
