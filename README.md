@@ -18,32 +18,42 @@ added `debug_calloc()`, `debug_realloc()` and several functions to print out lea
 % make
 % ./memtest
 === Allocated Memory ===================
-address : 0x7f8b97402780
+address : 0x7f99e5f025c0
 size    : 100 bytes
 file    : test.c
 line    : 10
 ----------------------------------------
-address : 0x7f8b97402810
-size    : 50 bytes
+address : 0x7f99e5f02650
+size    : 6 bytes
 file    : test.c
 line    : 11
 ----------------------------------------
-address : 0x7f8b97402880
+address : 0x7f99e5f02680
 size    : 40 bytes
 file    : test.c
 line    : 12
 ----------------------------------------
-Total   : 190 bytes
+address : 0x7f99e5f026d0
+size    : 50 bytes
+file    : test.c
+line    : 13
+----------------------------------------
+Total   : 196 bytes
 ========================================
 
 Checking for memory leak
 === Allocated Memory ===================
-address : 0x7f8b97402810
-size    : 50 bytes
+address : 0x7f99e5f02650
+size    : 6 bytes
 file    : test.c
 line    : 11
 ----------------------------------------
-Total   : 50 bytes
+address : 0x7f99e5f02680
+size    : 40 bytes
+file    : test.c
+line    : 12
+----------------------------------------
+Total   : 46 bytes
 ========================================
 ```
 
@@ -53,21 +63,26 @@ Super easy. Just include `debug_memory.h`, and then call
 `test.c` in the repository).
 
 ```cpp
+/*
+ * Author: Akira Funahashi <funa@bio.keio.ac.jp>
+ * Last modified: Tue, 14 Nov 2017 20:05:33 +0900
+ */
 #include <stdio.h>
 #include "debug_memory.h"
 
 int main(int argc, char const* argv[])
 {
   char* p = (char*)malloc(sizeof(char) * 100);
-  char* q = (char*)malloc(sizeof(char) * 50);
+  char* q = strdup("Hello");
   char* r = (char*)calloc(sizeof(int), 10);
+  char* s = (char*)malloc(sizeof(char) * 50);
 
   /* Print allocated memory */
   print_allocated_memory();
 
+  /* q and r will cause memory leak! */
   free(p);
-  q = NULL; /* memory leak! */
-  free(r);
+  free(s);
 
   /* Print allocated memory again */
   printf("\nChecking for memory leak\n");
@@ -78,5 +93,5 @@ int main(int argc, char const* argv[])
 ```
 
 ## Todo
-- [ ] Implement a wrapper for `strdup()` (will be done quite soon).
+- [x] Implement a wrapper for `strdup()` (will be done quite soon).
 - [x] Change the name of the function `print_list()` to avoid name conflict.

@@ -1,6 +1,6 @@
 /*
  * Author: Akira Funahashi <funa@bio.keio.ac.jp>
- * Last modified: Tue, 14 Nov 2017 19:59:52 +0900
+ * Last modified: Tue, 14 Nov 2017 20:05:33 +0900
  */
 #include <stdio.h>
 #include "debug_memory.h"
@@ -15,6 +15,7 @@ int main(int argc, char const* argv[])
   /* Print allocated memory */
   print_allocated_memory();
 
+  /* q and r will cause memory leak! */
   free(p);
   free(s);
 
