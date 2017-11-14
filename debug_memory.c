@@ -63,7 +63,7 @@ void print_debug_node(debug_node_t* node) {
 void print_allocated_memory(void) {
   debug_node_t *current = debug_root_node;
   if (current == NULL) return;
-  printf("=== Allocated Memory ===================\n");
+  printf("=== Allocated Memory (v%s) ==========\n", DEBUG_MEMORY_DOTTED_VERSION);
   while (current != NULL) {
     print_debug_node(current);
     current = current->next;

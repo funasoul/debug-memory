@@ -5,6 +5,10 @@
 #include<stdio.h>
 #include<string.h>
 
+#define DEBUG_MEMORY_DOTTED_VERSION "0.0.1"
+#define DEBUG_MEMORY_VERSION 00001
+#define DEBUG_MEMORY_VERSION_STRING "00001"
+
 /* Total bytes allocated */
 int total_allocated;
 
@@ -30,6 +34,7 @@ void remove_node(Site*);
 void print_debug_node(debug_node_t*);
 void print_allocated_memory(void);
 
+/* debug_memory.c will not read this to avoid recursive expansion */
 #ifndef C_DEBUG_MEMORY_C
 #define malloc(n) debug_malloc(n, __FILE__, __LINE__)
 #define calloc(c, n) debug_calloc(c, n, __FILE__, __LINE__)
