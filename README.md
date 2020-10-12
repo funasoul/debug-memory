@@ -4,6 +4,8 @@ for checking memory leak, but when I want to check memory leak on language bindi
 it's not so easy. I decided to write this code so that I can easily embed the memory
 check in my C code.
 
+[![Run on Repl.it](https://repl.it/badge/github/funasoul/debug-memory)](https://repl.it/github/funasoul/debug-memory)
+
 ## Introduction
 Thanks to the document by
 [Oracle](https://docs.oracle.com/javase/jp/8/docs/technotes/guides/troubleshoot/memleaks005.html#CIHDEEHJ),
@@ -15,8 +17,8 @@ added `debug_calloc()`, `debug_realloc()` and several functions to print out lea
 ```sh
 % git clone https://github.com/funasoul/debug-memory.git
 % cd debug-memory
-% make
-% ./memtest
+% make run
+./memtest
 === Allocated Memory ===================
 address : 0x7f99e5f025c0
 size    : 100 bytes

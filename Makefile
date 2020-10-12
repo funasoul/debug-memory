@@ -9,6 +9,9 @@ LDFLAGS =
 .PHONY: all
 all: $(PROG)
 
+run: all
+	./$(PROG)
+
 $(TEST_OBJS): EXTRA_FLAGS := -Wno-unused-variable
 
 .SUFFIXES: .o .c
